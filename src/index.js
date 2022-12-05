@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app'
 
-export default function App() {
-   return (
-       <App/>
-   );
-}
+ReactDOM.render(
+    <App/>,
+    document.getElementById('root')
+);
 

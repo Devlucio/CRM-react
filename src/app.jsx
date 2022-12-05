@@ -4,15 +4,12 @@ import {BrowserRouter, Route} from 'react-router-dom';
 /*Paginas*/
 import Site from './site/site';
 import Login from './app/login';
-import Menu from './site/components/menu';
 
-
-const App = () => {
+function App(){
     return <BrowserRouter>
-    <Route component = { Site }  path="/" exact />
-    <Route component = { Login }  path="/app" exact />
-    <Route component = { Menu }  path="/menu" exact />
-    </BrowserRouter>
-    
+    <Route exact path='/' component={Site} />    
+    <Route exact path='/app' component={Login} />    
+    </BrowserRouter>;      
 }
+
 export default App;
