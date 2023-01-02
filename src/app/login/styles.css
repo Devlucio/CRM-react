@@ -1,12 +1,29 @@
+.logo{
+    padding-bottom: 50px;
+}
+img{
+    width: 100px;
+    border-radius: 10px;
+}
+
+p{
+    color: #000;
+}
+
+.button{
+    font-size: 100%;
+    margin-left: 3%;
+}
+
 .gradient-custom-2 {
     /* fallback for old browsers */
     background: #fccb90;
     
     /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    background: -webkit-linear-gradient(to right, #0d6efd, #ffffff);
     
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    background: linear-gradient(to right,  #0d6efd, #5b8bf3);
     }
     
     @media (min-width: 768px) {
@@ -19,12 +36,4 @@
     border-top-right-radius: .3rem;
     border-bottom-right-radius: .3rem;
     }
-    }
-
-    .fundo{
-        background-color: #eee;
-    }
-
-    .imgLogin {
-        width: 185px;
     }

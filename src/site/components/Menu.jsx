@@ -31,6 +31,9 @@ export default function Menu() {
             <li className="nav-item">
               <a className="nav-link" aria-current="page" href="#footer">Contato</a>
             </li>
+            <li className="nav-item btn-menu">
+              <a href="/app" className="btn btn-outline-light btn-lg btn-menu">Fazer Login</a>
+            </li>
           </ul>
         </div>    
       
