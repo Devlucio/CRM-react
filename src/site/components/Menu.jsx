@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Menu() {
   return (
@@ -31,8 +32,8 @@ export default function Menu() {
             <li className="nav-item">
               <a className="nav-link" aria-current="page" href="#footer">Contato</a>
             </li>
-            <li className="nav-item btn-menu">
-              <a href="/app" className="btn btn-outline-light btn-lg btn-menu">Fazer Login</a>
+            <li className="nav-item btn-menu">              
+              <Link to="/app" className="btn btn-outline-light btn-lg btn-menu">Fazer Login</Link>
             </li>
           </ul>
         </div>    
