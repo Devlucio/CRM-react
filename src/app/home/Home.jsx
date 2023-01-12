@@ -1,9 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-import './Home.css';
+
+import Menu from '../components/menuHome/Menu';
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <Menu/>
+    </div>
   )
 }

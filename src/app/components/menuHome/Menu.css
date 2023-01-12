@@ -1,0 +1,10 @@
+.navbar{
+    background-color: #0d6efd;
+}
+
+.btn-menu{
+    background-color: #323338;
+    border-radius: 10px;
+    font-size: 2vh;
+    border: none;      
+}

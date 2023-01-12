@@ -7,6 +7,7 @@ import Login from './app/login/Login';
 import CriarConta from './app/criarConta/CriarConta.jsx';
 import RedefinirSenha from './app/redefinirSenha/RedefinirSenha';
 import Home from './app/home/Home';
+import NovoCliente from './app/novoCliente/NovoCliente';
 
 //Rotas
 function App(){
@@ -17,6 +18,7 @@ function App(){
       <Route path='/app/criarconta' element={<CriarConta/>}/>
       <Route path='/app/redefinirsenha' element={<RedefinirSenha/>}/>
       <Route path='/app/home' element={<Home/>}/>
+      <Route path='/app/novocliente' element={<NovoCliente/>}/>
     </Routes>
     </BrowserRouter> ;
   }
