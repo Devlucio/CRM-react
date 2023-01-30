@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
 
 
 export default function Login() {
+
+  function LoginUsuario(){
+    alert('Estou funcionando:)');
+  }
+
   return (
   <section className="h-100 gradient-form ">
     <div className="container py-5 h-100">
@@ -35,7 +40,7 @@ export default function Login() {
                     </div>
   
                     <div className="text-center pt-1 mb-5 pb-1">
-                      <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="button">Acessar</button>
+                      <button onClick={LoginUsuario} className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="button">Acessar</button>
                       <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="reset" onclick="Aviso('Campos limpos com secesso.')" >Limpar Campos</button>
                       <br/>
                       <Link to="/app/redefinirsenha" className="text-muted redefinir-senha" >Esqueceu a senha?</Link>
