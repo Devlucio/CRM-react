@@ -5,8 +5,19 @@ import './Login.css';
 
 export default function Login() {
 
+  const [user, setUser] = useState('');
+  const [senha, setSenha] = useState('');  
+
   function LoginUsuario(){
-    alert('Estou funcionando:)');
+    alert('Estou funcionando :).');  
+  }
+
+  function alterarUser(event) {
+    setUser(event.target.value)
+  }
+
+  function alterarSenha(event) {
+    setSenha(event.target.value)
   }
 
   return (
@@ -26,23 +37,23 @@ export default function Login() {
                   </div>
   
                   <form>
-                    <p>Por favor, faça login na sua conta</p>
+                    <p>Por favor, faça login na sua conta.</p>
   
                     <div className="form-outline mb-4">
-                      <input type="email" id="form2Example11" className="form-control"
-                        placeholder="Nome de usuário" />
-                      <label className="form-label" for="form2Example11">Nome de usuário</label>
+                      <input onChange={alterarUser} type="email" id="form2Example11" className="form-control"
+                        placeholder="E-mail do usuário" />
+                      <label className="form-label" for="form2Example11">E-mail</label>
                     </div>
   
                     <div className="form-outline mb-4">
-                      <input type="password" id="form2Example22" className="form-control" placeholder="Digite sua senha" />
+                      <input onChange={alterarSenha} type="password" id="form2Example22" className="form-control" placeholder="Digite sua senha" />
                       <label className="form-label" for="form2Example22">Senha</label>
                     </div>
   
                     <div className="text-center pt-1 mb-5 pb-1">
                       <button onClick={LoginUsuario} className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="button">Acessar</button>
                       <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="reset" onclick="Aviso('Campos limpos com secesso.')" >Limpar Campos</button>
-                      <br/>
+                      <br/>                      
                       <Link to="/app/redefinirsenha" className="text-muted redefinir-senha" >Esqueceu a senha?</Link>
                     </div>
   
