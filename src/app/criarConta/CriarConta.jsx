@@ -5,20 +5,17 @@ import './CriarConta.css';
 export default function CriarConta() {
 
   const [user, setUser] = useState('');
-  const [senha, setSenha] = useState('');
+  const [senha, setSenha] = useState('');  
 
-  function criarUser(){
-    alert('Conta criada com sucesso :).')
-  }
+  function criarUser(){    
+
+    if (!user || !senha){
+     return alert('Preencha todos os campos.');      
+      }
+      
+      return alert('Usuario criado')
+  }  
   
-  function inserirEmail(event){
-    setUser(event.target.value)
-  }
-
-  function criarSenha(event){
-    setSenha(event.target.value)
-  }
-
   return (
     <section className="h-100 gradient-form ">
     <div className="container py-5 h-100">
@@ -39,13 +36,13 @@ export default function CriarConta() {
                     <p>Criar Conta</p>
   
                     <div className="form-outline mb-4">
-                      <input onChange={inserirEmail} type="email" id="form2Example11" className="form-control"
+                      <input onChange={(e) => setUser(e.target.value)} type="email" id="form2Example11" className="form-control"
                         placeholder="E-mail de usuário" />
                       <label className="form-label" for="form2Example11">E-mail de usuário</label>
                     </div>
   
                     <div className="form-outline mb-4">
-                      <input onChange={criarSenha} type="password" id="form2Example22" className="form-control" placeholder="Digite uma senha" />
+                      <input onChange={(e) => setSenha(e.target.value)} type="password" id="form2Example22" className="form-control" placeholder="Digite uma senha" />
                       <label className="form-label" for="form2Example22">Digite uma senha</label>
                     </div>
   
