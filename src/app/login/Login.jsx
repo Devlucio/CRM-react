@@ -9,8 +9,14 @@ export default function Login() {
   const [senha, setSenha] = useState('');  
 
   function LoginUsuario(){
-    alert('Estou funcionando :).');  
-  }
+      if (!user || !senha){
+        alert('Preencha os caompos com e-mail e senha de usuário.');  
+    }
+
+      if (user || senha){
+      alert('Usuario encontrado.');  
+    } 
+  }  
 
   function alterarUser(event) {
     setUser(event.target.value)
@@ -52,7 +58,7 @@ export default function Login() {
   
                     <div className="text-center pt-1 mb-5 pb-1">
                       <button onClick={LoginUsuario} className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="button">Acessar</button>
-                      <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="reset" onclick="Aviso('Campos limpos com secesso.')" >Limpar Campos</button>
+                      <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="reset" onclick={"Aviso('Campos limpos com secesso.')"} >Limpar Campos</button>
                       <br/>                      
                       <Link to="/app/redefinirsenha" className="text-muted redefinir-senha" >Esqueceu a senha?</Link>
                     </div>

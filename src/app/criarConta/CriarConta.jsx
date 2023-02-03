@@ -12,8 +12,10 @@ export default function CriarConta() {
     if (!user || !senha){
      return alert('Preencha todos os campos.');      
       }
+    if (user || senha){
+      return alert('Usuário criado com sucesso :).')
+    }       
       
-      return alert('Usuario criado')
   }  
   
   return (
