@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './CriarConta.css'; 
+import logocrm from '../../Images/logocrm.png';
 
 export default function CriarConta() {
 
@@ -13,10 +14,14 @@ export default function CriarConta() {
      return alert('Preencha todos os campos.');      
       }
     if (user || senha){
-      return alert('Usuário criado com sucesso :).')
+      return alert('Usuário criado com sucesso :).');
     }       
       
   }  
+
+  function limpar_campos (){
+    return alert('Campos limpo com sucesso.');
+  }
   
   return (
     <section className="h-100 gradient-form ">
@@ -30,7 +35,7 @@ export default function CriarConta() {
   
                   <div className="text-center ">
                     <Link to="/">
-                      <img className="logo" src="../imagens/salesforce-crm-social.png" alt="Logo"/>         
+                      <img className="logo" src={logocrm}/>         
                     </Link>
                   </div>
   
@@ -50,7 +55,7 @@ export default function CriarConta() {
   
                     <div className="text-center pt-1 mb-5 pb-1">
                       <button onClick={criarUser} className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="button">Criar Conta</button>
-                      <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="reset" onclick="Aviso('Campos limpos com secesso.')" >Limpar Campos</button>                      
+                      <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="reset" onClick={limpar_campos} >Limpar Campos</button>                      
                     </div>
   
                     <div className="d-flex align-items-center justify-content-center pb-4">
@@ -64,6 +69,11 @@ export default function CriarConta() {
               </div>
               <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
                 <div className="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <div className='text-center'>
+                  <Link to="/">
+                     <img className="logo" src={logocrm} />         
+                  </Link>
+                  </div>
                   <h4 className="mb-4">Somos mais que uma empresa</h4>
                   <p className="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud

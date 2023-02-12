@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
-
+import logocrm from '../../Images/logocrm.png'
 
 export default function Login() {
 
@@ -26,6 +26,10 @@ export default function Login() {
     setSenha(event.target.value)
   }
 
+  function limpar_campos (){
+    return alert('Campos limpo com sucesso.');
+  }
+
   return (
   <section className="h-100 gradient-form ">
     <div className="container py-5 h-100">
@@ -38,7 +42,7 @@ export default function Login() {
   
                   <div className="text-center ">
                     <Link to="/">
-                      <img className="logo" src="../imagens/salesforce-crm-social.png" alt="Logo"/>         
+                      <img className="logo" src={logocrm}/>         
                     </Link>
                   </div>
   
@@ -58,7 +62,7 @@ export default function Login() {
   
                     <div className="text-center pt-1 mb-5 pb-1">
                       <button onClick={LoginUsuario} className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="button">Acessar</button>
-                      <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="reset" onclick={"Aviso('Campos limpos com secesso.')"} >Limpar Campos</button>
+                      <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="reset" onClick={limpar_campos} >Limpar Campos</button>
                       <br/>                      
                       <Link to="/app/redefinirsenha" className="text-muted redefinir-senha" >Esqueceu a senha?</Link>
                     </div>

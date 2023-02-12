@@ -10,8 +10,17 @@ p{
     height: 95vh;
 }
 
+.logo{
+    max-width: 50px;
+    height: auto;    
+}
+
 
 /* NAVBAR */
+
+#menu img{
+    padding-bottom: 0;
+}
 
 .navbar{
     background-color: #0d6efd;
@@ -30,11 +39,12 @@ p{
 #banner{
     background-color: #0d6efd;
     color: #ffffff;
-    padding: 100px 0 70px 0;
+    padding: 150px 0 70px 0;
 }
 
 #banner img{
     width: 100%;
+    margin-bottom: 0;
 }
 
 .btn-banner{

@@ -1,5 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Img3 from '../../Images/Img3.png'
 
 export default function Banner() {
   return (
@@ -15,7 +16,7 @@ export default function Banner() {
                 </div>
 
                 <div className="col-lg-6">
-                    <img src="Images/screenshot-crm.png" alt="CRM" />                        
+                    <img src={Img3} alt="CRM" />                        
                 </div>
        
             </div>
