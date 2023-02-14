@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './RedefinirSenha.css';
+import logocrm from '../../Images/logocrm.png'
 
 
 export default function RedefinirSenha() {
@@ -16,7 +17,7 @@ export default function RedefinirSenha() {
 
                   <div className="text-center ">
                     <Link to="/">
-                      <img className="logo" src="../imagens/salesforce-crm-social.png" alt="Logo"/>         
+                      <img className="logo" src={logocrm}/>         
                     </Link>
                   </div>
 
@@ -53,6 +54,11 @@ export default function RedefinirSenha() {
               </div>
               <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
                 <div className="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <div className="text-center ">
+                    <Link to="/">
+                      <img className="logo" src={logocrm}/>         
+                    </Link>
+                  </div>
                   <h4 className="mb-4">Somos mais que uma empresa</h4>
                   <p className="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
