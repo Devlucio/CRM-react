@@ -13,7 +13,7 @@ export default function CriarConta() {
     if (!user || !senha){
      return alert('Preencha todos os campos.');      
       }
-    if (user || senha){
+    else {
       return alert('Usuário criado com sucesso :).');
     }       
       
@@ -71,7 +71,7 @@ export default function CriarConta() {
                 <div className="text-white px-3 py-4 p-md-5 mx-md-4">
                   <div className='text-center'>
                   <Link to="/">
-                     <img className="logo" src={logocrm} />         
+                     <img className="logo2" src={logocrm} />         
                   </Link>
                   </div>
                   <h4 className="mb-4">Somos mais que uma empresa</h4>

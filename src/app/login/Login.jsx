@@ -13,7 +13,7 @@ export default function Login() {
         alert('Preencha os caompos com e-mail e senha de usuário.');  
     }
 
-      if (user || senha){
+      else {
       alert('Usuario encontrado.');  
     } 
   }  
@@ -78,6 +78,11 @@ export default function Login() {
               </div>
               <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
                 <div className="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <div className="text-center ">
+                    <Link to="/">
+                      <img className="logo2" src={logocrm}/>         
+                    </Link>
+                  </div>
                   <h4 className="mb-4">Somos mais que uma empresa</h4>
                   <p className="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
