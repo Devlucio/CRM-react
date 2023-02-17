@@ -7,7 +7,7 @@ export default function Menu() {
     <section id="menu">
       <nav className="navbar fixed-top navbar-expand-md navbar-dark">
 
-        <div className="container">
+        <div className="container-fluid">
                 
             <a className="navbar-brand" href="/#">
               <img className='logo' src={logocrm}/>

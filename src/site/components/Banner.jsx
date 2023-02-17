@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Img3 from '../../Images/Img3.png'
+import Img3 from '../../Images/Img3.png';
 
 export default function Banner() {
   return (

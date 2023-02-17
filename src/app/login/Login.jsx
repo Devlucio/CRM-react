@@ -1,31 +1,34 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
+
 import './Login.css';
 import logocrm from '../../Images/logocrm.png'
 
+import FireBase from '../config/FireBase';
+
 export default function Login() {
 
-  const [user, setUser] = useState('');
-  const [senha, setSenha] = useState('');  
+  const [email, setEmail] = useState();
+  const [senha, setSenha] = useState();
 
-  function LoginUsuario(){
-      if (!user || !senha){
-        alert('Preencha os caompos com e-mail e senha de usuário.');  
-    }
-
-      else {
-      alert('Usuario encontrado.');  
-    } 
-  }  
-
-  function alterarUser(event) {
-    setUser(event.target.value)
+  function LoginUsuario(){ 
+    
+    FireBase.auth().signInWithEmailAndPassword();
+    
   }
 
-  function alterarSenha(event) {
-    setSenha(event.target.value)
+  function emailLogin(event){
+
+    setEmail(event.target.value);
+
   }
 
+  function senhaLogin(event){
+
+    setSenha(event.target.value);
+
+  }
+  
   function limpar_campos (){
     return alert('Campos limpo com sucesso.');
   }
@@ -44,24 +47,25 @@ export default function Login() {
                     <Link to="/">
                       <img className="logo" src={logocrm}/>         
                     </Link>
-                  </div>
+                  </div>                  
   
                   <form>
                     <p>Por favor, faça login na sua conta.</p>
   
                     <div className="form-outline mb-4">
-                      <input onChange={alterarUser} type="email" id="form2Example11" className="form-control"
+                      <input onChange={emailLogin} type="email" id="form2Example11" className="form-control"
                         placeholder="E-mail do usuário" />
                       <label className="form-label" for="form2Example11">E-mail</label>
                     </div>
   
                     <div className="form-outline mb-4">
-                      <input onChange={alterarSenha} type="password" id="form2Example22" className="form-control" placeholder="Digite sua senha" />
+                      <input onChange={senhaLogin} type="password" id="form2Example22" className="form-control" placeholder="Digite sua senha" />
                       <label className="form-label" for="form2Example22">Senha</label>
                     </div>
   
                     <div className="text-center pt-1 mb-5 pb-1">
                       <button onClick={LoginUsuario} className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="button">Acessar</button>
+
                       <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="reset" onClick={limpar_campos} >Limpar Campos</button>
                       <br/>                      
                       <Link to="/app/redefinirsenha" className="text-muted redefinir-senha" >Esqueceu a senha?</Link>
