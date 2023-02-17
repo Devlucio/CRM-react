@@ -3,19 +3,28 @@ import { Link } from 'react-router-dom';
 import './CriarConta.css'; 
 import logocrm from '../../Images/logocrm.png';
 
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 export default function CriarConta() {
 
-  const [user, setUser] = useState('');
-  const [senha, setSenha] = useState('');  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');  
 
   function criarUser(){    
 
-    if (!user || !senha){
-     return alert('Preencha todos os campos.');      
-      }
-    else {
-      return alert('Usuário criado com sucesso :).');
-    }       
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+           
       
   }  
 
@@ -43,18 +52,19 @@ export default function CriarConta() {
                     <p>Criar Conta</p>
   
                     <div className="form-outline mb-4">
-                      <input onChange={(e) => setUser(e.target.value)} type="email" id="form2Example11" className="form-control"
+                      <input onChange={(e) => setEmail(e.target.value)} type="email" id="form2Example11" className="form-control"
                         placeholder="E-mail de usuário" />
                       <label className="form-label" for="form2Example11">E-mail de usuário</label>
                     </div>
   
                     <div className="form-outline mb-4">
-                      <input onChange={(e) => setSenha(e.target.value)} type="password" id="form2Example22" className="form-control" placeholder="Digite uma senha" />
+                      <input onChange={(e) => setPassword(e.target.value)} type="password" id="form2Example22" className="form-control" placeholder="Digite uma senha" />
                       <label className="form-label" for="form2Example22">Digite uma senha</label>
                     </div>
   
                     <div className="text-center pt-1 mb-5 pb-1">
                       <button onClick={criarUser} className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="button">Criar Conta</button>
+
                       <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button" type="reset" onClick={limpar_campos} >Limpar Campos</button>                      
                     </div>
   

@@ -2,9 +2,12 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
 import './Login.css';
-import logocrm from '../../Images/logocrm.png'
+import logocrm from '../../Images/logocrm.png';
+
+
 
 import FireBase from '../config/FireBase';
+import 'firebase/auth';
 
 export default function Login() {
 
@@ -13,7 +16,12 @@ export default function Login() {
 
   function LoginUsuario(){ 
     
-    FireBase.auth().signInWithEmailAndPassword();
+    FireBase.auth().signInWithEmailAndPassword(email, senha).then(function(FireBase){
+      alert('Deu certo :).')
+    })
+    .catch(function(error){
+      alert(error)
+    });
     
   }
 
