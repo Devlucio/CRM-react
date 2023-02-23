@@ -1,10 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
+
+//Firebase
+import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+import { auth } from "../config/firebase";
+
+//CSS
 import './RedefinirSenha.css';
 import logocrm from '../../Images/logocrm.png'
 
+export default function RedefinirSenha () {
 
-export default function RedefinirSenha() {
+  const [email, setEmail] = useState('');
+  const [sendPasswordResetEmail, sending, error] = 
+  useSendPasswordResetEmail(auth);
+
+  const actionCodeSettings = {
+    url: 'http://localhost:3000',
+  };
+
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error.message}</p>
+      </div>
+    );
+  }
+  if (sending) {
+    return <div className='text-center'>
+      <p>Sending...</p>
+      <img className="authLogo" src={logocrm} alt="Logo"/>
+    </div> ;
+  }
+  
   return (
     <section className="h-100 gradient-form" >
     <div className="container py-5 h-100">
@@ -17,29 +45,29 @@ export default function RedefinirSenha() {
 
                   <div className="text-center ">
                     <Link to="/">
-                      <img className="logo" src={logocrm}/>         
+                      <img className="logo" src={logocrm} alt="Logo"/>         
                     </Link>
                   </div>
 
                   <form>
-                    <p>Digite o seu nome de usuário.</p>
+                    <p>Digite o seu email de usuário para recuperar a senha.</p>
 
                     <div className="form-outline mb-4">
-                      <input type="email" id="form2Example11" className="form-control"
+                      <input onChange={(e) => setEmail(e.target.value)} type="email" id="form2Example11" className="form-control"
                         placeholder="Digite o seu nome de usuário." />
                       <label className="form-label" for="form2Example11">E-mail</label>
                     </div>
 
-                    <p>Digite uma nova senha.</p>  
-
-                    <div className="form-outline mb-4">
-                      <input type="password" id="form2Example22" className="form-control" placeholder="Digite uma nova senha" />
-                      <label className="form-label" for="form2Example22">Senha</label>
-                    </div>
-
+                    
                     <div className="text-center pt-1 mb-5 pb-1">
-                      <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Redefinir Senha</button>
-                      <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="reset" onclick="Aviso('Campos limpos com secesso.')" >Limpar Campos</button>
+                      <button onClick={ async () => {
+                        const sucesso = await sendPasswordResetEmail(email, actionCodeSettings); if (sucesso) {
+                          alert('E-mail enviado.')
+                        }}}                     
+                      className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Redefinir Senha</button>
+
+                      <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="reset" onclick="Aviso('Campos limpos com secesso.')" 
+                      onClick={() => alert('Formulário limpo com sucesso.')}>Limpar formulário</button>
                       
                     </div>
 
@@ -56,7 +84,7 @@ export default function RedefinirSenha() {
                 <div className="text-white px-3 py-4 p-md-5 mx-md-4">
                   <div className="text-center ">
                     <Link to="/">
-                      <img className="logo2" src={logocrm}/>         
+                      <img className="authLogo" src={logocrm} alt="Logo"/>         
                     </Link>
                   </div>
                   <h4 className="mb-4">Somos mais que uma empresa</h4>

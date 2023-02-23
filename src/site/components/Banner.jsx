@@ -16,7 +16,7 @@ export default function Banner() {
                 </div>
 
                 <div className="col-lg-6">
-                    <img src={Img3} alt="CRM" />                        
+                    <img className='container-fluid' src={Img3} alt="CRM" />                        
                 </div>
        
             </div>

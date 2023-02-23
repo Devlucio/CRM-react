@@ -3,11 +3,10 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom'
 
 //Páginas
 import Site from './site/Site';
-import Login from './app/login/Login';
-import CriarConta from './app/criarConta/CriarConta.jsx';
-import RedefinirSenha from './app/redefinirSenha/RedefinirSenha';
+import Login from './app/login/Index';
+import CriarConta from './app/criarConta/Index';
+import RedefinirSenha from './app/redefinirSenha';
 import Home from './app/home/Home';
-import NovoCliente from './app/novoCliente/NovoCliente';
 
 //Rotas
 function App(){
@@ -17,8 +16,7 @@ function App(){
       <Route path='/app' element={<Login/>}/>
       <Route path='/app/criarconta' element={<CriarConta/>}/>
       <Route path='/app/redefinirsenha' element={<RedefinirSenha/>}/>
-      <Route path='/app/home' element={<Home/>}/>
-      <Route path='/app/novocliente' element={<NovoCliente/>}/>
+      <Route path='/app/home' element={<Home/>}/>      
     </Routes>
     </BrowserRouter> ;
   }

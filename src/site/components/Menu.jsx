@@ -10,7 +10,7 @@ export default function Menu() {
         <div className="container-fluid">
                 
             <a className="navbar-brand" href="/#">
-              <img className='logo' src={logocrm}/>
+              <img className='logo' src={logocrm} alt= "Logo"/>
             </a>
 
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,8 +33,10 @@ export default function Menu() {
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" aria-current="page" href="#footer">Contato</a>
-                </li>
-                <li className="nav-item btn-menu">              
+                </li>                
+              </ul>
+              <ul className="navbar-nav ms-auto">
+                <li className="nav-item btn-menu ">              
                   <Link to="/app" className="btn btn-outline-light btn-lg btn-menu">Fazer Login</Link>
                 </li>
               </ul>
