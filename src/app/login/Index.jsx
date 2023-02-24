@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //Firebase
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
@@ -10,37 +10,29 @@ import "./Login.css";
 import logocrm from "../../Images/logocrm.png";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const sucesso = <div>oi</div>;
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
   if (error) {
     return (
-      <div className="text-center">
-        <div className="alert alert-danger mt-2 " role="alert">
-          <h4>E-mail ou senha inválido.</h4>
-        </div>
-        <img className="authLogo" src={logocrm} alt="Logo" />
+      <div>
+        <p>Error: {error.message}</p>
+        <button></button>
       </div>
     );
   }
   if (loading) {
-    return (
-      <div className="text-center">
-        <h4>Carregando...</h4>
-        <img className="authLogo" src={logocrm} alt="Logo" />
-      </div>
-    );
+    <div className="text-center">
+      <h4>Carregando...</h4>
+      <img className="authLogo" src={logocrm} alt="Logo" />
+    </div>;
   }
   if (user) {
-    return (
-      <div className="text-center">
-        <h4>Usuário registrado: {user.user.email}</h4>
-        <img className="authLogo" src={logocrm} alt="Logo" />
-      </div>
-    );
+    navigate("/app/home");
   }
 
   return (

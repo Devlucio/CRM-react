@@ -1,47 +1,44 @@
-import React, {useState} from 'react'; 
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 //Fairebase
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../config/firebase";
 
 //CSS e imagens
 import "./CriarConta.css";
 import logocrm from "../../Images/logocrm.png";
 
-export default function CriarConta () {
+export default function CriarConta() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
 
-    
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [
-      createUserWithEmailAndPassword,
-      user,
-      loading,
-      error,
-    ] = useCreateUserWithEmailAndPassword(auth);
-
-    if (error) {
-      return (
-        <div className='text-center'>
-          <h3>Error: {error.message}</h3>
-          <img className="authLogo" src={logocrm} alt="Logo" />
-        </div>
-      );
-    }
-    if (loading) {
-      return <div className='text-center'>
-      <p>Loading...</p>
-      <img className="authLogo" src={logocrm} alt="Logo" />
+  if (error) {
+    return (
+      <div className="text-center">
+        <h3>Error: {error.message}</h3>
+        <img className="authLogo" src={logocrm} alt="Logo" />
+        
       </div>
-    }
-    if (user) {
-      return (
-        <div className='text-center'>
-          <h3>Usuário registrado: {user.user.email}</h3>
-          <img className="authLogo" src={logocrm} alt="Logo" />
-        </div>
-      );
+    );
+  }
+  if (loading) {
+    return (
+      <div className="text-center">
+        <p>Loading...</p>
+        <img className="authLogo" src={logocrm} alt="Logo" />
+      </div>
+    );
+  }
+  if (user) {
+    return (
+      <div className="text-center">
+        <h3>Usuário registrado: {user.user.email}</h3>
+        <img className="authLogo" src={logocrm} alt="Logo" />
+      </div>
+    );
   }
 
   return (
@@ -64,7 +61,7 @@ export default function CriarConta () {
 
                       <div className="form-outline mb-4">
                         <input
-                          onChange={(e) => setEmail(e.target.value)}                          
+                          onChange={(e) => setEmail(e.target.value)}
                           type="email"
                           id="form2Example11"
                           className="form-control"
@@ -77,7 +74,7 @@ export default function CriarConta () {
 
                       <div className="form-outline mb-4">
                         <input
-                          onChange={(e) => setPassword(e.target.value)}                          
+                          onChange={(e) => setPassword(e.target.value)}
                           type="password"
                           id="form2Example22"
                           className="form-control"
@@ -89,20 +86,24 @@ export default function CriarConta () {
                       </div>
 
                       <div className="text-center pt-1 mb-5 pb-1">
-                        <button 
-                          onClick={() => createUserWithEmailAndPassword(email, password)}                         
+                        <button
+                          onClick={() =>
+                            createUserWithEmailAndPassword(email, password)
+                          }
                           className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button"
-                          type="button">
+                          type="button"
+                        >
                           Criar Conta
                         </button>
 
                         <button
                           className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button"
                           type="reset"
-                          onClick={() => alert('Formulário limpo com sucesso.')}>
-                            Limpar formulário
+                          onClick={() => alert("Formulário limpo com sucesso.")}
+                        >
+                          Limpar formulário
                         </button>
-                      </div>                    
+                      </div>
 
                       <div className="d-flex align-items-center justify-content-center pb-4">
                         <p className="mb-0 me-2">Já tenho uma conta</p>
