@@ -1,103 +1,140 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 //Firebase
-import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
 import { auth } from "../config/firebase";
 
 //CSS
-import './RedefinirSenha.css';
-import logocrm from '../../Images/logocrm.png'
+import "./RedefinirSenha.css";
+import logocrm from "../../Images/logocrm.png";
 
-export default function RedefinirSenha () {
-
-  const [email, setEmail] = useState('');
-  const [sendPasswordResetEmail, sending, error] = 
-  useSendPasswordResetEmail(auth);
+export default function RedefinirSenha() {
+  const [email, setEmail] = useState("");
+  const [sendPasswordResetEmail, sending, error] =
+    useSendPasswordResetEmail(auth);
 
   const actionCodeSettings = {
-    url: 'http://localhost:3000',
+    url: "http://localhost:3000",
   };
 
   if (error) {
     return (
-      <div>
-        <p>Error: {error.message}</p>
+      <div className="text-center">
+        <h3>Error: {error.message}</h3>
+        <img className="authLogo" src={logocrm} alt="Logo" />
+        <Link
+          to="/"
+          className="text-center btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button"
+          type="button"
+        >
+          Início
+        </Link>
       </div>
     );
   }
   if (sending) {
-    return <div className='text-center'>
-      <p>Sending...</p>
-      <img className="authLogo" src={logocrm} alt="Logo"/>
-    </div> ;
+    return (
+      <div className="text-center">
+        <p>Sending...</p>
+        <img className="authLogo" src={logocrm} alt="Logo" />        
+      </div>
+    );
   }
-  
+
   return (
-    <section className="h-100 gradient-form" >
-    <div className="container py-5 h-100">
-      <div className="row d-flex justify-content-center align-items-center h-100">
-        <div className="col-xl-10">
-          <div className="card rounded-3 text-black">
-            <div className="row g-0">
-              <div className="col-lg-6">
-                <div className="card-body p-md-5 mx-md-4">
+    <section className="h-100 gradient-form">
+      <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+          <div className="col-xl-10">
+            <div className="card rounded-3 text-black">
+              <div className="row g-0">
+                <div className="col-lg-6">
+                  <div className="card-body p-md-5 mx-md-4">
+                    <div className="text-center ">
+                      <Link to="/">
+                        <img className="logo" src={logocrm} alt="Logo" />
+                      </Link>
+                    </div>
 
-                  <div className="text-center ">
-                    <Link to="/">
-                      <img className="logo" src={logocrm} alt="Logo"/>         
-                    </Link>
+                    <form>
+                      <p>
+                        Digite o seu email de usuário para recuperar a senha.
+                      </p>
+
+                      <div className="form-outline mb-4">
+                        <input
+                          onChange={(e) => setEmail(e.target.value)}
+                          type="email"
+                          id="form2Example11"
+                          className="form-control"
+                          placeholder="Digite o seu nome de usuário."
+                        />
+                        <label className="form-label" for="form2Example11">
+                          E-mail
+                        </label>
+                      </div>
+
+                      <div className="text-center pt-1 mb-5 pb-1">
+                        <button
+                          onClick={async () => {
+                            const sucesso = await sendPasswordResetEmail(
+                              email,
+                              actionCodeSettings
+                            );
+                            if (sucesso) {
+                              alert("E-mail enviado.");
+                            }
+                          }}
+                          className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                          type="button"
+                        >
+                          Redefinir Senha
+                        </button>
+
+                        <button
+                          className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                          type="reset"
+                          onclick="Aviso('Campos limpos com secesso.')"
+                          onClick={() => alert("Formulário limpo com sucesso.")}
+                        >
+                          Limpar formulário
+                        </button>
+                      </div>
+
+                      <div className="d-flex align-items-center justify-content-center pb-4">
+                        <p className="mb-0 me-2">Não tem uma conta?</p>
+                        <Link
+                          to="/app/criarconta"
+                          className="btn btn-outline-danger"
+                        >
+                          Criar uma conta
+                        </Link>
+                      </div>
+                    </form>
                   </div>
-
-                  <form>
-                    <p>Digite o seu email de usuário para recuperar a senha.</p>
-
-                    <div className="form-outline mb-4">
-                      <input onChange={(e) => setEmail(e.target.value)} type="email" id="form2Example11" className="form-control"
-                        placeholder="Digite o seu nome de usuário." />
-                      <label className="form-label" for="form2Example11">E-mail</label>
-                    </div>
-
-                    
-                    <div className="text-center pt-1 mb-5 pb-1">
-                      <button onClick={ async () => {
-                        const sucesso = await sendPasswordResetEmail(email, actionCodeSettings); if (sucesso) {
-                          alert('E-mail enviado.')
-                        }}}                     
-                      className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Redefinir Senha</button>
-
-                      <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="reset" onclick="Aviso('Campos limpos com secesso.')" 
-                      onClick={() => alert('Formulário limpo com sucesso.')}>Limpar formulário</button>
-                      
-                    </div>
-
-                    <div className="d-flex align-items-center justify-content-center pb-4">
-                      <p className="mb-0 me-2">Não tem uma conta?</p>
-                      <Link to="/app/criarconta" className="btn btn-outline-danger">Criar uma conta</Link>
-                    </div>
-
-                  </form>
-
                 </div>
-              </div>
-              <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
-                <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                  <div className="text-center ">
-                    <Link to="/">
-                      <img className="authLogo" src={logocrm} alt="Logo"/>         
-                    </Link>
+                <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
+                  <div className="text-white px-3 py-4 p-md-5 mx-md-4">
+                    <div className="text-center ">
+                      <Link to="/">
+                        <img className="authLogo" src={logocrm} alt="Logo" />
+                      </Link>
+                    </div>
+                    <h4 className="mb-4">Somos mais que uma empresa</h4>
+                    <p className="small mb-0">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
                   </div>
-                  <h4 className="mb-4">Somos mais que uma empresa</h4>
-                  <p className="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  )
+    </section>
+  );
 }

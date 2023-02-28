@@ -13,15 +13,21 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const sucesso = <div>oi</div>;
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
   if (error) {
     return (
-      <div>
-        <p>Error: {error.message}</p>
-        <button></button>
+      <div className="text-center">
+        <h4>Error: {error.message}</h4>
+        <img className="authLogo" src={logocrm} alt="Logo" />
+        <Link
+          to="/"
+          className="text-center btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button"
+          type="button"
+        >
+          Início
+        </Link>
       </div>
     );
   }
@@ -29,6 +35,13 @@ export default function Login() {
     <div className="text-center">
       <h4>Carregando...</h4>
       <img className="authLogo" src={logocrm} alt="Logo" />
+      <Link
+        to="/"
+        className="text-center btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button"
+        type="button"
+      >
+        Início
+      </Link>
     </div>;
   }
   if (user) {
@@ -61,7 +74,7 @@ export default function Login() {
                           className="form-control"
                           placeholder="E-mail do usuário"
                         />
-                        <label className="form-label" for="form2Example11">
+                        <label className="form-label" htmlFor="form2Example11">
                           E-mail
                         </label>
                       </div>
@@ -74,7 +87,7 @@ export default function Login() {
                           className="form-control"
                           placeholder="Digite sua senha"
                         />
-                        <label className="form-label" for="form2Example22">
+                        <label className="form-label" htmlFor="form2Example22">
                           Senha
                         </label>
                       </div>

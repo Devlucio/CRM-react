@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //Fairebase
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
@@ -10,6 +10,7 @@ import "./CriarConta.css";
 import logocrm from "../../Images/logocrm.png";
 
 export default function CriarConta() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [createUserWithEmailAndPassword, user, loading, error] =
@@ -20,7 +21,13 @@ export default function CriarConta() {
       <div className="text-center">
         <h3>Error: {error.message}</h3>
         <img className="authLogo" src={logocrm} alt="Logo" />
-        
+        <Link
+          to="/"
+          className="text-center btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button"
+          type="button"
+        >
+          Início
+        </Link>
       </div>
     );
   }
@@ -33,12 +40,7 @@ export default function CriarConta() {
     );
   }
   if (user) {
-    return (
-      <div className="text-center">
-        <h3>Usuário registrado: {user.user.email}</h3>
-        <img className="authLogo" src={logocrm} alt="Logo" />
-      </div>
-    );
+    navigate("/app/home");
   }
 
   return (

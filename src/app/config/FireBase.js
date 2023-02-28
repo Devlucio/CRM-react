@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth"
+import { getAuth } from "firebase/auth";
+//import { getFirestore } from "firebase/firestore";
+
  
 // TODO: Adicionar SDKs para produtos Firebase que você deseja usar
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -11,10 +13,12 @@ const firebaseConfig = {
   projectId: "crm-tera-e2b7d",
   storageBucket: "crm-tera-e2b7d.appspot.com",
   messagingSenderId: "543090833282",
-  appId: "1:543090833282:web:30098a365951bf15b1c19b"
+  appId: "1:543090833282:web:30098a365951bf15b1c19b",
+  //databaseURL: "https://CRM-Tera.firebaseio.com",
 };
   
 // Initialize Firebase
  const app = initializeApp(firebaseConfig);
  export const auth = getAuth(app);
+ //export const db = getFirestore(app);
 
