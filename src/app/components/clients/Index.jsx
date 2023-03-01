@@ -2,15 +2,11 @@ import React from "react";
 import Clients from "../../dados/Index";
 
 //Firebase
-//import { db } from "../../config/firebase";
-//import { collection, getDocs } from "firebase/firestore";
-
-
 
 
 export default function ListClient() {
 
-  
+
   return (
     <table className="table table-hover table-bordered table-responsive">
       <thead className="table-info">
