@@ -2,47 +2,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 //Fairebase
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth } from "../config/firebase";
 
 //CSS e imagens
 import "./CriarConta.css";
 import logocrm from "../../Images/logocrm.png";
 
 export default function CriarConta() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
-
-  if (error) {
-    return (
-      <div className="text-center">
-        <h3>Error: {error.message}</h3>
-        <img className="authLogo" src={logocrm} alt="Logo" />
-        <Link
-          to="/"
-          className="text-center btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button"
-          type="button"
-        >
-          Início
-        </Link>
-      </div>
-    );
-  }
-  if (loading) {
-    return (
-      <div className="text-center">
-        <p>Loading...</p>
-        <img className="authLogo" src={logocrm} alt="Logo" />
-      </div>
-    );
-  }
-  if (user) {
-    navigate("/app/home");
-  }
-
   return (
     <section className="h-100 gradient-form ">
       <div className="container py-5 h-100">
@@ -63,7 +28,6 @@ export default function CriarConta() {
 
                       <div className="form-outline mb-4">
                         <input
-                          onChange={(e) => setEmail(e.target.value)}
                           type="email"
                           id="form2Example11"
                           className="form-control"
@@ -76,7 +40,6 @@ export default function CriarConta() {
 
                       <div className="form-outline mb-4">
                         <input
-                          onChange={(e) => setPassword(e.target.value)}
                           type="password"
                           id="form2Example22"
                           className="form-control"
@@ -89,9 +52,6 @@ export default function CriarConta() {
 
                       <div className="text-center pt-1 mb-5 pb-1">
                         <button
-                          onClick={() =>
-                            createUserWithEmailAndPassword(email, password)
-                          }
                           className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button"
                           type="button"
                         >

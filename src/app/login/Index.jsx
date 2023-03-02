@@ -2,52 +2,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 //Firebase
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth } from "../config/firebase";
 
 //CSS
 import "./Login.css";
 import logocrm from "../../Images/logocrm.png";
 
 export default function Login() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
-
-  if (error) {
-    return (
-      <div className="text-center">
-        <h4>Error: {error.message}</h4>
-        <img className="authLogo" src={logocrm} alt="Logo" />
-        <Link
-          to="/"
-          className="text-center btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button"
-          type="button"
-        >
-          Início
-        </Link>
-      </div>
-    );
-  }
-  if (loading) {
-    <div className="text-center">
-      <h4>Carregando...</h4>
-      <img className="authLogo" src={logocrm} alt="Logo" />
-      <Link
-        to="/"
-        className="text-center btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button"
-        type="button"
-      >
-        Início
-      </Link>
-    </div>;
-  }
-  if (user) {
-    navigate("/app/home");
-  }
-
   return (
     <section className="h-100 gradient-form ">
       <div className="container py-5 h-100">
@@ -68,7 +28,6 @@ export default function Login() {
 
                       <div className="form-outline mb-4">
                         <input
-                          onChange={(e) => setEmail(e.target.value)}
                           type="email"
                           id="form2Example11"
                           className="form-control"
@@ -81,7 +40,6 @@ export default function Login() {
 
                       <div className="form-outline mb-4">
                         <input
-                          onChange={(e) => setPassword(e.target.value)}
                           type="password"
                           id="form2Example22"
                           className="form-control"
@@ -94,9 +52,6 @@ export default function Login() {
 
                       <div className="text-center pt-1 mb-5 pb-1">
                         <button
-                          onClick={() =>
-                            signInWithEmailAndPassword(email, password)
-                          }
                           className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button"
                           type="button"
                         >

@@ -2,46 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 //Firebase
-import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
-import { auth } from "../config/firebase";
 
 //CSS
 import "./RedefinirSenha.css";
 import logocrm from "../../Images/logocrm.png";
 
 export default function RedefinirSenha() {
-  const [email, setEmail] = useState("");
-  const [sendPasswordResetEmail, sending, error] =
-    useSendPasswordResetEmail(auth);
-
-  const actionCodeSettings = {
-    url: "http://localhost:3000",
-  };
-
-  if (error) {
-    return (
-      <div className="text-center">
-        <h3>Error: {error.message}</h3>
-        <img className="authLogo" src={logocrm} alt="Logo" />
-        <Link
-          to="/"
-          className="text-center btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button"
-          type="button"
-        >
-          Início
-        </Link>
-      </div>
-    );
-  }
-  if (sending) {
-    return (
-      <div className="text-center">
-        <p>Sending...</p>
-        <img className="authLogo" src={logocrm} alt="Logo" />        
-      </div>
-    );
-  }
-
   return (
     <section className="h-100 gradient-form">
       <div className="container py-5 h-100">
@@ -64,7 +30,6 @@ export default function RedefinirSenha() {
 
                       <div className="form-outline mb-4">
                         <input
-                          onChange={(e) => setEmail(e.target.value)}
                           type="email"
                           id="form2Example11"
                           className="form-control"
@@ -77,15 +42,6 @@ export default function RedefinirSenha() {
 
                       <div className="text-center pt-1 mb-5 pb-1">
                         <button
-                          onClick={async () => {
-                            const sucesso = await sendPasswordResetEmail(
-                              email,
-                              actionCodeSettings
-                            );
-                            if (sucesso) {
-                              alert("E-mail enviado.");
-                            }
-                          }}
                           className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
                           type="button"
                         >
