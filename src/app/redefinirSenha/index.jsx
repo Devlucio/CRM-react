@@ -2,12 +2,52 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 //Firebase
+import firebase from "../config/firebase";
+import "firebase/auth";
 
 //CSS
 import "./RedefinirSenha.css";
 import logocrm from "../../Images/logocrm.png";
 
 export default function RedefinirSenha() {
+  const [email, setEmail] = useState("");
+  const [notice, setNotice] = useState("");
+  const [alerta, setAlerta] = useState("");
+
+  function recuperarSenha() {
+    setNotice("");
+
+    if (!email) {
+      setNotice("Preencha o campo de email para redefinir a senha.");
+      return;
+    }
+
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then((result) => {
+        setAlerta("Good");
+      })
+      .catch((erro) => {
+        setAlerta("Bad");
+        if (erro.message) {
+          setNotice("Bad");
+          if (erro.message === "The email address is badly formatted.") {
+            setNotice("O endereço de e-mail está formatado incorretamente.");
+          } else if (
+            erro.message ===
+            "There is no user record corresponding to this identifier. The user may have been deleted."
+          ) {
+            setNotice(
+              "Não há registro de usuário correspondente a este identificador. O usuário pode ter sido excluído."
+            );
+          } else {
+            setNotice("Erro ao redefinir senha: " + erro.message);
+          }
+        }
+      });
+  }
+
   return (
     <section className="h-100 gradient-form">
       <div className="container py-5 h-100">
@@ -25,7 +65,7 @@ export default function RedefinirSenha() {
 
                     <form>
                       <p>
-                        Digite o seu email de usuário para recuperar a senha.
+                        Digite o seu email do usuário para recuperar a senha.
                       </p>
 
                       <div className="form-outline mb-4">
@@ -34,8 +74,9 @@ export default function RedefinirSenha() {
                           id="form2Example11"
                           className="form-control"
                           placeholder="Digite o seu nome de usuário."
+                          onChange={(e) => setEmail(e.target.value)}
                         />
-                        <label className="form-label" for="form2Example11">
+                        <label className="form-label" htmlFor="form2Example11">
                           E-mail
                         </label>
                       </div>
@@ -44,19 +85,29 @@ export default function RedefinirSenha() {
                         <button
                           className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
                           type="button"
+                          onClick={recuperarSenha}
                         >
                           Redefinir Senha
                         </button>
-
                         <button
                           className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
                           type="reset"
-                          onclick="Aviso('Campos limpos com secesso.')"
                           onClick={() => alert("Formulário limpo com sucesso.")}
                         >
                           Limpar formulário
                         </button>
                       </div>
+
+                      {notice.length > 0 ? (
+                        <div className="alert alert-danger mt-3" role="alert">
+                          {notice}
+                        </div>
+                      ) : null}
+                      {alerta === "Good" ? (
+                          <div className="alert alert-success" role="alert">
+                          Email para redefinir a senha enviado com sucesso!
+                        </div>
+                        ) : null}
 
                       <div className="d-flex align-items-center justify-content-center pb-4">
                         <p className="mb-0 me-2">Não tem uma conta?</p>

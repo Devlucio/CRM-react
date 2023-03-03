@@ -1,13 +1,55 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 //Firebase
+import firebase from "../config/firebase";
+import "firebase/auth";
 
 //CSS
 import "./Login.css";
 import logocrm from "../../Images/logocrm.png";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [notice, setNotice] = useState("");
+  const [alerta, setAlerta] = useState("");
+
+  function userLogin() {
+    setNotice("");
+
+    if (!email || !password) {
+      setNotice("Preencha todos os campos corretamente.");
+      return;
+    }
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((firebaseUser) => {
+        setAlerta("Good");
+      })
+      .catch((error) => {
+        setAlerta("Bad");
+        if (error.message === "The email address is badly formatted.") {
+          setNotice("O endereço de e-mail está formatado incorretamente.");
+        } else if (
+          error.message ===
+          "There is no user record corresponding to this identifier. The user may have been deleted."
+        ) {
+          setNotice(
+            "Não há registro de usuário correspondente a este identificador. O usuário pode ter sido excluído."
+          );
+        } else if (
+          error.message ===
+          "The password is invalid or the user does not have a password."
+        ) {
+          setNotice("A senha é inválida ou o usuário não possui uma senha.");
+        } else {
+          setNotice("Erro ao criar conta: " + error.message);
+        }
+      });
+  }
+
   return (
     <section className="h-100 gradient-form ">
       <div className="container py-5 h-100">
@@ -32,6 +74,7 @@ export default function Login() {
                           id="form2Example11"
                           className="form-control"
                           placeholder="E-mail do usuário"
+                          onChange={(e) => setEmail(e.target.value)}
                         />
                         <label className="form-label" htmlFor="form2Example11">
                           E-mail
@@ -44,6 +87,7 @@ export default function Login() {
                           id="form2Example22"
                           className="form-control"
                           placeholder="Digite sua senha"
+                          onChange={(e) => setPassword(e.target.value)}
                         />
                         <label className="form-label" htmlFor="form2Example22">
                           Senha
@@ -52,6 +96,7 @@ export default function Login() {
 
                       <div className="text-center pt-1 mb-5 pb-1">
                         <button
+                          onClick={userLogin}
                           className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 button"
                           type="button"
                         >
@@ -65,6 +110,16 @@ export default function Login() {
                         >
                           Limpar formulário
                         </button>
+                        <br />
+
+                        {notice.length > 0 ? (
+                          <div className="alert alert-danger mt-3" role="alert">
+                            {notice}
+                          </div>
+                        ) : null}
+                        {alerta === "Good" ? (
+                          <Navigate relative to="/app/home" />
+                        ) : null}
                         <br />
 
                         <Link
