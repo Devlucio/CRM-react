@@ -1,12 +1,7 @@
-import React from "react";
-import Clients from "../../dados/Index";
+import React, { useEffect, useState } from "react";
+//import Clients from "../../dados/Index";
 
-//Firebase
-
-
-export default function ListClient() {
-
-
+export default function ListClients(props) {
   return (
     <table className="table table-hover table-bordered table-responsive">
       <thead className="table-info">
@@ -18,13 +13,13 @@ export default function ListClient() {
         </tr>
       </thead>
       <tbody className="table-group-divider">
-        {Clients.map((Clients) => {
+        {props.clients.map((clients) => {
           return (
-            <tr Key={Clients.id}>
-              <th scope="row">{Clients.id}</th>
-              <td>{Clients.name}</td>
-              <td>{Clients.email}</td>
-              <td>{Clients.phoneNamber}</td>
+            <tr key={clients.id}>
+              <th scope="row">{clients.id}</th>
+              <td>{clients.name}</td>
+              <td>{clients.email}</td>
+              <td>{clients.phoneNamber}</td>
             </tr>
           );
         })}

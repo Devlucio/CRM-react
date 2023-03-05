@@ -112,10 +112,10 @@ export default function RedefinirSenha() {
                       <div className="d-flex align-items-center justify-content-center pb-4">
                         <p className="mb-0 me-2">Não tem uma conta?</p>
                         <Link
-                          to="/app/criarconta"
+                          to="/app"
                           className="btn btn-outline-danger"
                         >
-                          Criar uma conta
+                          Acessar conta
                         </Link>
                       </div>
                     </form>
