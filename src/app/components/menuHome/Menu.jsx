@@ -33,7 +33,7 @@ export default function Menu() {
             </li>
             <li className="nav-item">
               <Link
-                to="/app/novocliente"
+                to="/app/novoClient"
                 className="nav-link"
                 aria-current="page"
               >

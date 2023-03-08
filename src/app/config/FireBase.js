@@ -16,5 +16,5 @@ const firebaseConfig = {
 export default firebase.initializeApp(firebaseConfig);
 
 
-// Initialize Cloud Firestore and get a reference to the service
-//const db = firebase.firestore();
+// Inicializa o Cloud Firestore e obtém uma referência ao serviço
+ export const db = firebase.firestore();
