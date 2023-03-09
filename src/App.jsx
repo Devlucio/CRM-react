@@ -8,7 +8,7 @@ import CriarConta from "./app/criarConta/Index";
 import RedefinirSenha from "./app/redefinirSenha";
 import Home from "./app/home/Home";
 import NovoClient from "./app/novoClient/Index";
-import EditarClient from "./app/editarClient";
+import EditarClient from "./app/editarClient/index";
 
 //Rotas
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Route path="/app/redefinirsenha" element={<RedefinirSenha />} />
         <Route path="/app/home" element={<Home />} />
         <Route path="/app/novoClient" element={<NovoClient />} />
-        <Route path="/app/editarClient/:id" element={<EditarClient />} />
+        <Route path="/app/editarClient" element={<EditarClient />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from "react";
-import "./Home.css";
-import ListClients from "../components/clients/Index";
 
 //Firebase
+//import firebase from "../config/firebase";
 import { db } from "../config/firebase";
 
+//componentes
 import Menu from "../components/menuHome/Menu";
+import ListaClient from "../components/clients/Index";
+
+//CSS
+import "./Home.css";
 
 export default function Home() {
-  const [clients, setClients] = useState([]);
-  const [pesquisa, setPesquisa] = useState([]);
+  const [clients, setClient] = useState([]);
+  const [pesquisar, setPesquisar] = useState('');
 
   useEffect(() => {
     const listClient = [];
-    db.collection("clients")
+    db.collection("clients")      
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          if (doc.data().name.indexOf(pesquisa) >= 0) {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, doc.data().name);
+          //if para fazer uma pesquisar na coloção nesse caso por name
+          if (doc.data().name.indexOf(pesquisar) >= 0) {
             listClient.push({
               id: doc.id,
               name: doc.data().name,
@@ -27,9 +34,9 @@ export default function Home() {
             });
           }
         });
-        setClients(listClient);
-      });
-  }, [pesquisa]);
+        setClient(listClient);
+      })    
+  }, []);
 
   return (
     <div>
@@ -48,7 +55,8 @@ export default function Home() {
                 <i className="fa-solid fa-magnifying-glass"></i> Procurar
               </button>
               <input
-                onChange={(e) => setPesquisa(e.target.value)}
+                //Função para pesquisar
+                onChange={(e) => setPesquisar(e.target.value)}
                 type="text"
                 className="form-control"
                 placeholder="Pesquisa por nomes."
@@ -58,8 +66,31 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <ListaClient clients={clients} />
       </div>
-      <ListClients clients={clients} />
     </div>
   );
 }
+
+
+    /*firebase
+      .firestore()
+      .collection("clients")
+      .get()
+      .then(async (resultado) => {
+        await resultado.docs.forEach((doc) => {
+          console.log(doc.id, doc.data().name);
+          //if para fazer uma pesquisar na coloção nesse caso por name
+          if (doc.data().name.indexOf(pesquisa) >= 0) {
+          listClient.push({
+            id: doc.id,
+            name: doc.data().name,
+            email: doc.data().email,
+            phoneNamber: doc.data().phoneNamber,
+            profession: doc.data().profession
+          })
+        }
+        });
+        setClient(listClient);
+      });*/
