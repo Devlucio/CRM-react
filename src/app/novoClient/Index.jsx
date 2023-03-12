@@ -5,7 +5,6 @@ import { Link, Navigate } from "react-router-dom";
 import firebase from "../config/firebase";
 import "firebase/firestore";
 
-
 //CSS
 import "./novoClient.css";
 
@@ -21,31 +20,29 @@ export default function NovoClient() {
   const collection = firebase.firestore();
 
   function adicionarClient() {
-
-    if (name.length === 0){
-      setNotice('Informe o nome do cliente.')
-    } else if(phoneNamber.length === 0){
-      setNotice('Informe o numero do telefone do cliente.')
-    } else{
+    if (name.length === 0) {
+      setNotice("Informe o nome do cliente.");
+    } else if (phoneNamber.length === 0) {
+      setNotice("Informe o numero do telefone do cliente.");
+    } else {
+      //Adicionar documento com firebase
       collection
-      .collection("clients")
-      .add({
-        name: name,
-        email: email,
-        phoneNamber: phoneNamber,
-        profession: profession,
-      })
-      .then((docRef) => {
-        setNotice("");
-        setAlerta("Good");
-      })
-      .catch((error) => {
-        setNotice("");
-        setAlerta("");
-      });
+        .collection("clients")
+        .add({
+          name: name,
+          email: email,
+          phoneNamber: phoneNamber,
+          profession: profession,
+        })
+        .then((docRef) => {
+          setNotice("");
+          setAlerta("Good");
+        })
+        .catch((error) => {
+          setNotice("");
+          setAlerta("");
+        });
     }
-
-    
   }
   return (
     <div>
@@ -102,15 +99,25 @@ export default function NovoClient() {
               >
                 Adicionar
               </button>
-              <Link to="/app/home" type="button" className="btn btn-outline-danger btn-add">
+              <Link
+                to="/app/home"
+                type="button"
+                className="btn btn-outline-danger btn-add"
+              >
                 Cancelar
               </Link>
-              {notice.length > 0 ? (
-                <div className="alert alert-danger mt-3" role="alert">
-                  {notice}
-                </div>
-              ) : null}
-              {alerta === "Good" ? <Navigate relative to="/app/home" /> : null}
+              {
+                //Função para aparecer o alerta
+                notice.length > 0 ? (
+                  <div className="alert alert-danger mt-3" role="alert">
+                    {notice}
+                  </div>
+                ) : null
+              }
+              {
+                //Função para redirecionar o usuário caso for criado o documento com o Navigate
+                alerta === "Good" ? <Navigate relative to="/app/home" /> : null
+              }
             </div>
           </form>
         </div>
@@ -118,4 +125,3 @@ export default function NovoClient() {
     </div>
   );
 }
-

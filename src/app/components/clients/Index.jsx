@@ -1,22 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-//import clients from "../../dados/Index";
-
-//Firebase
-//import firebase from "../../config/firebase";
-//import { db } from "../../config/firebase";
-//import "firebase/firestore";
-
 //CSS
 import "./index.css";
 
 export default function ListaClient(props) {
-
-  function deleteClient(id) {
-    alert("Usuário excluido " + id )
-  }
-
   return (
     <div>
       <table className="table table-hover table-bordered ">
@@ -42,10 +30,21 @@ export default function ListaClient(props) {
                 <td>{client.phoneNamber}</td>
                 <td>{client.profession}</td>
                 <td>
-                  <Link to="/app/editarClient">
+                  <Link
+                    to={
+                      //Rota para editar cliente com id
+                      "/app/editarClient/:id" + client.id
+                    }
+                  >
                     <i className="fa-solid fa-pencil iconEditar"></i>
                   </Link>
-                  <Link to="#" onClick={() => deleteClient(client.id)}>
+                  <Link
+                    to="#"
+                    onClick={() =>
+                      //props para exportar a função
+                      props.deletarClient(client.id)
+                    }
+                  >
                     <i className="fa-regular fa-trash-can iconEditar red"></i>
                   </Link>
                 </td>
@@ -57,4 +56,3 @@ export default function ListaClient(props) {
     </div>
   );
 }
-/**/

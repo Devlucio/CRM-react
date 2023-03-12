@@ -22,10 +22,11 @@ export default function CriarConta() {
       setNotice("Preencha todos os campos corretamente.");
       return;
     }
+    //Criar usuário com firebase
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then((firebaseCreat) => {
+      .then((userCredential) => {
         setAlerta("Good");
       })
       .catch((error) => {
@@ -107,12 +108,18 @@ export default function CriarConta() {
                         </button>
                       </div>
 
-                      {notice.length > 0 ? (
-                        <div className="alert alert-danger mt-2" role="alert">
-                          {notice}
-                        </div>
-                      ) : null}
-                      {alerta === "Good" ? (
+                      {
+                        //Função para aparecer o alerta
+                        notice.length > 0 ? (
+                          <div className="alert alert-danger mt-2" role="alert">
+                            {notice}
+                          </div>
+                        ) : null
+                      }
+
+                      {
+                      //Função para redirecionar o usuário caso crie uma conta com sucesso
+                      alerta === "Good" ? (
                         <Navigate replace to="/app/home" />
                       ) : null}
                       <br />

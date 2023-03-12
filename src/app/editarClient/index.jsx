@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate  } from "react-router-dom";
 
 //Firebase
-//import { db } from "../config/firebase";
+import { db } from "../config/firebase";
 import firebase from "../config/firebase";
 import "firebase/firestore";
 
@@ -11,20 +11,18 @@ import "./editarClient.css";
 
 import Menu from "../components/menuHome/Menu";
 
-export default function EditarClient() {
+export default function EditarClient(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNamber, setPhoneNamber] = useState("");
   const [profession, setProfession] = useState("");
   const [notice, setNotice] = useState("");
   const [alerta, setAlerta] = useState("");
-  const collection = firebase.firestore();
+  //const db = firebase.firestore();  
 
   useEffect(() => {
     /*
-    const clientRef = db.collection("clients").doc('MD3PkmCfpNxhLozyeoio');
-
-    // Set the "clients" field of the city 'DC'
+    const clientRef = db.collection("clients").doc(props.match.params.id);    
     return clientRef
       .update({
         name: true
@@ -41,8 +39,7 @@ export default function EditarClient() {
     firebase
       .firestore()
       .collection("clients")
-      //'MD3PkmCfpNxhLozyeoio'
-      .doc("MD3PkmCfpNxhLozyeoio")
+      .doc("LVFF95yokqLXWxfX5HAK")
       .get()
       .then((res) => {
         setName(res.data().name);
@@ -52,16 +49,15 @@ export default function EditarClient() {
       });
   }, []);
 
-  function adicionarClient() {
+  function AtualizarClient() {
     if (name.length === 0) {
       setNotice("Informe o nome do cliente.");
     } else if (phoneNamber.length === 0) {
       setNotice("Informe o numero do telefone do cliente.");
     } else {
-      firebase
-        .firestore()
-        .collection("clients")
-        .add({
+
+      const clientRef = db.collection("clients").doc( );    
+    return clientRef.update({
           name: name,
           email: email,
           phoneNamber: phoneNamber,
@@ -82,12 +78,12 @@ export default function EditarClient() {
       <Menu />
       <div className="container-fluid title">
         <div className="offset-lg-4 offset-md-2 col-lg-4 col-md-8">
-          <h1>Novo Cliente</h1>
+          <h1>Editar Cliente</h1>
           <form>
             <div className="form-floating mb-3">
               <input
                 disabled
-                //value={client.id}
+                value={"MD3PkmCfpNxhLozyeoio"}
                 type="text"
                 className="form-control"
                 id="floatingInput"
@@ -141,11 +137,11 @@ export default function EditarClient() {
             </div>
             <div className="text-center">
               <button
-                onClick={adicionarClient}
+                onClick={AtualizarClient}
                 type="button"
                 className="btn btn-primary btn-add"
               >
-                Editar
+                Atualizar
               </button>
               <Link
                 to="/app/home"

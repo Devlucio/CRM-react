@@ -16,16 +16,27 @@ export default function Login() {
   const [alerta, setAlerta] = useState("");
 
   function userLogin() {
+
+    /*const user = firebase.auth().currentUser;
+
+if (user) {
+  // User is signed in, see docs for a list of available properties
+  // https://firebase.google.com/docs/reference/js/firebase.User
+  // ...
+} else {
+  // No user is signed in.
+}*/
     setNotice("");
 
     if (!email || !password) {
       setNotice("Preencha todos os campos corretamente.");
       return;
     }
+    //Fazer login com firebase
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((firebaseUser) => {
+      .then((userCredential) => {
         setAlerta("Good");
       })
       .catch((error) => {
@@ -112,14 +123,23 @@ export default function Login() {
                         </button>
                         <br />
 
-                        {notice.length > 0 ? (
-                          <div className="alert alert-danger mt-3" role="alert">
-                            {notice}
-                          </div>
-                        ) : null}
-                        {alerta === "Good" ? (
-                          <Navigate relative to="/app/home" />
-                        ) : null}
+                        {
+                          //Função para aparecer o alerta
+                          notice.length > 0 ? (
+                            <div
+                              className="alert alert-danger mt-3"
+                              role="alert"
+                            >
+                              {notice}
+                            </div>
+                          ) : null
+                        }
+                        {
+                          //Função para redirecionar o usuário caso for logado com o Navigate
+                          alerta === "Good" ? (
+                            <Navigate relative to="/app/home/uid:" />
+                          ) : null
+                        }
                         <br />
 
                         <Link

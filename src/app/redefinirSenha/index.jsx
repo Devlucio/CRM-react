@@ -21,7 +21,7 @@ export default function RedefinirSenha() {
       setNotice("Preencha o campo de email para redefinir a senha.");
       return;
     }
-
+    //Redefinir senha com firebase
     firebase
       .auth()
       .sendPasswordResetEmail(email)
@@ -103,18 +103,18 @@ export default function RedefinirSenha() {
                           {notice}
                         </div>
                       ) : null}
-                      {alerta === "Good" ? (
+                      {
+                        //Função para aparecer o alerta
+                        alerta === "Good" ? (
                           <div className="alert alert-success" role="alert">
-                          Email para redefinir a senha enviado com sucesso!
-                        </div>
-                        ) : null}
+                            Email para redefinir a senha enviado com sucesso!
+                          </div>
+                        ) : null
+                      }
 
                       <div className="d-flex align-items-center justify-content-center pb-4">
                         <p className="mb-0 me-2">Não tem uma conta?</p>
-                        <Link
-                          to="/app"
-                          className="btn btn-outline-danger"
-                        >
+                        <Link to="/app" className="btn btn-outline-danger">
                           Acessar conta
                         </Link>
                       </div>

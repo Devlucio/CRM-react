@@ -10,6 +10,7 @@ import Home from "./app/home/Home";
 import NovoClient from "./app/novoClient/Index";
 import EditarClient from "./app/editarClient/index";
 
+
 //Rotas
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path="/app/redefinirsenha" element={<RedefinirSenha />} />
         <Route path="/app/home" element={<Home />} />
         <Route path="/app/novoClient" element={<NovoClient />} />
-        <Route path="/app/editarClient" element={<EditarClient />} />
+        <Route path="/app/editarClient/:id" element={<EditarClient />} />
       </Routes>
     </BrowserRouter>
   );
