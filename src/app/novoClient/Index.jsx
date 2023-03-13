@@ -74,7 +74,7 @@ export default function NovoClient() {
             <div className="form-floating mb-3">
               <input
                 onChange={(e) => setPhoneNamber(e.target.value)}
-                type="text"
+                type="number"
                 className="form-control"
                 id="floatingInput"
                 placeholder="Nome do cliente"
