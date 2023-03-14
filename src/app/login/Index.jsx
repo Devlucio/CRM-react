@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 
 //Firebase
-import firebase from "../config/firebase";
+import firebase from "../config/FireBase";
 import "firebase/auth";
 
 //CSS
@@ -137,7 +137,7 @@ if (user) {
                         {
                           //Função para redirecionar o usuário caso for logado com o Navigate
                           alerta === "Good" ? (
-                            <Navigate relative to="/app/home/uid:" />
+                            <Navigate relative to="/app/home" />
                           ) : null
                         }
                         <br />

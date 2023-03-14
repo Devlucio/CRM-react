@@ -4,17 +4,16 @@ import "firebase/firestore";
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
 const firebaseConfig = {
-  apiKey: "AIzaSyBIHb0OoSOScxt-EvyS7g_c-hL7rg9ri3M",
-  authDomain: "crm-tera-e2b7d.firebaseapp.com",
-  projectId: "crm-tera-e2b7d",
-  storageBucket: "crm-tera-e2b7d.appspot.com",
-  messagingSenderId: "543090833282",
-  appId: "1:543090833282:web:30098a365951bf15b1c19b"
+  apiKey: "AIzaSyA5d-qZVrZ78c7Q3eAKzz67idc_e2Ez5YU",
+  authDomain: "crm-tera-c5466.firebaseapp.com",
+  projectId: "crm-tera-c5466",
+  storageBucket: "crm-tera-c5466.appspot.com",
+  messagingSenderId: "487246481779",
+  appId: "1:487246481779:web:cc4f32fbb8faf570061d06"
 };
 
 // Initialize Firebase
 export default firebase.initializeApp(firebaseConfig);
 
-
 // Inicializa o Cloud Firestore e obtém uma referência ao serviço
- export const db = firebase.firestore();
+export const db = firebase.firestore();

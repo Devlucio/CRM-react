@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 
 //Firebase
-import firebase from "../config/firebase";
+import firebase from "../config/FireBase";
 import "firebase/auth";
 
 //CSS e imagens
@@ -118,10 +118,11 @@ export default function CriarConta() {
                       }
 
                       {
-                      //Função para redirecionar o usuário caso crie uma conta com sucesso
-                      alerta === "Good" ? (
-                        <Navigate replace to="/app/home" />
-                      ) : null}
+                        //Função para redirecionar o usuário caso crie uma conta com sucesso
+                        alerta === "Good" ? (
+                          <Navigate replace to="/app/home" />
+                        ) : null
+                      }
                       <br />
 
                       <div className="d-flex align-items-center justify-content-center pb-4">

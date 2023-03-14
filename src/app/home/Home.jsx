@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import SweetAlert from "react-bootstrap-sweetalert";
 
 //Firebase
-import { db } from "../config/firebase";
+import { db } from "../config/FireBase";
 
 //componentes
 import Menu from "../components/menuHome/Menu";

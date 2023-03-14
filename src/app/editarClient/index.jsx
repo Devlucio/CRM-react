@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate  } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 //Firebase
-import { db } from "../config/firebase";
-import firebase from "../config/firebase";
+import { db } from "../config/FireBase";
+//import firebase from "../config/firebase";
 import "firebase/firestore";
 
 //CSS
@@ -18,7 +18,7 @@ export default function EditarClient(props) {
   const [profession, setProfession] = useState("");
   const [notice, setNotice] = useState("");
   const [alerta, setAlerta] = useState("");
-  //const db = firebase.firestore();  
+  //const db = firebase.firestore();
 
   useEffect(() => {
     /*
@@ -36,9 +36,7 @@ export default function EditarClient(props) {
       });
       */
 
-    firebase
-      .firestore()
-      .collection("clients")
+    db.collection("clients")
       .doc("LVFF95yokqLXWxfX5HAK")
       .get()
       .then((res) => {
@@ -55,9 +53,9 @@ export default function EditarClient(props) {
     } else if (phoneNamber.length === 0) {
       setNotice("Informe o numero do telefone do cliente.");
     } else {
-
-      const clientRef = db.collection("clients").doc( );    
-    return clientRef.update({
+      const clientRef = db.collection("clients").doc();
+      return clientRef
+        .update({
           name: name,
           email: email,
           phoneNamber: phoneNamber,
