@@ -110,11 +110,11 @@ export default function Home() {
               cancelBtnText="Cancelar"
               cancelBtnBsStyle="primary"
               title="Tem certeza?"
+              focusCancelBtn
               //Confirmar a ação de excluir o documento
               onConfirm={() => deleteClient(pegarId)}
               //Apagar o SweetAlert passando o confirDelete para false
               onCancel={() => confirDelete(false)}
-              focusCancelBtn
             >
               Você não será capaz de reverter isso!
             </SweetAlert>
