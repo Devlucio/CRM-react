@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 
+
 //Firebase
 import firebase from "../config/FireBase";
 import "firebase/auth";
@@ -16,7 +17,6 @@ export default function Login() {
   const [alerta, setAlerta] = useState("");
 
   function userLogin() {
-
     /*const user = firebase.auth().currentUser;
 
 if (user) {

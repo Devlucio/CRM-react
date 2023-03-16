@@ -10,7 +10,6 @@ import Home from "./app/home/Home";
 import NovoClient from "./app/novoClient/Index";
 import EditarClient from "./app/editarClient/index";
 
-
 //Rotas
 function App() {
   return (
